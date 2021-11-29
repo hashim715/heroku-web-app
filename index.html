@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+
+        <div id="weathercon">
+            <i class="fas fa-sun" style="color: yellow;"></i>
+        </div>
+        <div class="info">
+            <h2 class="location">
+                <i class="fas fa-street-view" style="color: white;"></i>{%location%}, {%country%}
+            </h2>
+            <p id="date">WED | OCT 23 | 10:49AM</p>
+            <h1 class="temp">{%tempvalue%}</h1>
+            <h3 class="tempmin_max">Min {%tempmin%} | Max {%tempmax%}</h3> 
+        </div>
+    </div>
+    <script>
+        let date=new Date();
+        let dateelement=document.getElementById('date');
+        let currentday=()=>{
+            let days={
+                1:"Monday",
+                2:"Tuesday",
+                3:"Wednesday",
+                4:"Thursday",
+                5:"Friday",
+                6:"Saturday",
+                7:"Sunday"
+            };
+            let currentdate=days[date.getDay()];
+            return currentdate.toUpperCase();
+        }
+        let currentMonth=()=>{
+            let months=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            let currentmonth=months[date.getMonth()];
+            return currentmonth.toUpperCase();
+        }
+        let currentTime=()=>{
+            let hours=date.getHours();
+            let timedecider="AM";
+            if (hours <= 11){
+                timedecider = "PM";
+            }
+            else if (hours > 11 ){
+                timedecider = "AM";
+            }
+            let minutes= date.getMinutes();
+            return `${hours}:${minutes} ${timedecider}`;
+        }
+        dateelement.innerHTML=`${currentday()} | ${currentMonth()} ${date.getDay()} | ${currentTime()}`;
+    </script>
+</body>
+</html>
